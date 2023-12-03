@@ -16,8 +16,14 @@ export const OuterCircle = (props) => {
           transform="translate(50, 50)"
         >
           <circle cx="0" cy="0" r="50" />
-          <InnerCircle id="one" fill="#600" />
-          <InnerCircle id="two" fill="#606" />
+          <InnerCircle id="one"   fill="#420" />
+          <InnerCircle id="two"   fill="#340" />
+          <InnerCircle id="three" fill="#050" />
+          <InnerCircle id="four"  fill="#033" />
+          <InnerCircle id="five"  fill="#024" />
+          <InnerCircle id="six"   fill="#006" />
+          <InnerCircle id="seven" fill="#204" />
+          <InnerCircle id="eight" fill="#402" />
 
           <line
             x1="0"

@@ -12,8 +12,14 @@ export const DragContext = createContext()
 
 
 const initialState = {
-  one: { cx: 0, cy: 0, r: 25, colour: "#030" },
-  two: { cx: 25, cy: 25, r: 10 },
+  one:   { cx:   0, cy:   0, r: 25, ix: new Set() },
+  two:   { cx:   0, cy: -35, r: 10, ix: new Set() },
+  three: { cx:  25, cy: -25, r: 10, ix: new Set() },
+  four:  { cx:  35, cy:   0, r: 10, ix: new Set() },
+  five:  { cx:  25, cy:  25, r: 10, ix: new Set() },
+  six:   { cx:   0, cy:  35, r: 10, ix: new Set() },
+  seven: { cx: -25, cy:  25, r: 10, ix: new Set() },
+  eight: { cx: -35, cy:   0, r: 10, ix: new Set() }
 }
 const viewBoxRegex = /\d+\s+\d+\s+(\d+)\s+(\d+)/ // "0 0 100 100"
 
@@ -36,7 +42,7 @@ export const DragProvider = ({ children }) => {
     const matches = viewBoxRegex.exec(viewBox)
     const scale = Number(matches[1]) // "0 0 (100) 100"
     const outerRadius = scale / 2
-     
+
     // Find the centre and the scale of the <g> parent. Assume:
     // <g> is translated by half of scale on both x and y axes
     const gParent = target.closest("g")
@@ -54,7 +60,7 @@ export const DragProvider = ({ children }) => {
     // Find the maximum (squared) distance from the origin of <g>
     const maxDistance = outerRadius - data.r
     const maxDistance2 = maxDistance * maxDistance
-    
+
     // Find the offset from the click to the centre of the target
     const clickX = event.pageX
     const clickY = event.pageY
@@ -64,7 +70,7 @@ export const DragProvider = ({ children }) => {
     console.log(" ox, oy:", ox, oy, );
     console.log("clickX, clickY:", clickX, clickY);
     console.log("offsetX, offsetY:", offsetX, offsetY);
-  
+
     // TODO: Add timeout to stop drag, in case mouseUp was outside
     // browser window
     document.documentElement.onmousemove = drag
@@ -81,16 +87,57 @@ export const DragProvider = ({ children }) => {
       }
       return { cx, cy }
     }
-  
+
+    function checkForIntersections() {
+      let updateNeeded = false
+
+      const { cx: tx, cy: ty, r: tr, ix: tIx} = data
+      const entries = Object.entries(dimensions)
+      entries.forEach(([ oId, { cx, cy, r, ix }]) => {
+        if (oId !== id) {
+          const dx = Math.abs(tx - cx)
+          const dy = Math.abs(ty - cy)
+          const minDelta = r + tr
+          const minDelta2 = minDelta * minDelta
+
+          const delta2 = (dx * dx) + (dy * dy)
+          const intersectsNow = delta2 < minDelta2
+          const didIntersect = ix.has(id)
+          if (intersectsNow !== didIntersect) {
+            updateNeeded = true
+
+            if (intersectsNow) {
+              ix.add(id)
+              tIx.add(oId)
+            } else {
+              ix.delete(id)
+              tIx.delete(oId)
+            }
+          }
+        }
+      })
+
+      return updateNeeded
+    }
+
     function drag(event) {
       const left = offsetX + event.pageX
       const top = offsetY + event.pageY
       const { cx, cy } = getNewCentre((left-ox)/gx, (top-oy)/gx)
 
       data = { ...data, cx, cy }
-      setDimensions({ ...dimensions, [id]: data })
+
+      const fullUpdateNeeded = checkForIntersections()
+
+      if (fullUpdateNeeded) {
+        dimensions[id] = data
+        setDimensions({ ...dimensions })
+      } else {
+
+        setDimensions({ ...dimensions, [id]: data })
+      }
     }
-  
+
     function stopDrag() {
       document.documentElement.onmousemove = null
       document.documentElement.onmouseup = null
