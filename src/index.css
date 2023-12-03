@@ -1,0 +1,31 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #ddd;
+  background-color: #222;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body, #root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#outer-circle {
+  height: 95vh;
+  width: 95vh;
+}
+
+#dimensions {
+  height: 100vh;
+  border: 1px solid white;
+  box-sizing: border-box;
+}
