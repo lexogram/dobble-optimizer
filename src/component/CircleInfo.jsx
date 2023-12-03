@@ -10,9 +10,9 @@ export const CircleInfo = ({ id }) => {
   const { dimensions } = useContext(DragContext)
   const data = dimensions[id]
   let { cx, cy, r, fill } = data
-  cx = cx.toFixed(2)
-  cy = cy.toFixed(2)
-  r = r.toFixed(2)
+  cx = cx.toFixed(3)
+  cy = cy.toFixed(3)
+  r = r.toFixed(3)
   const size = "3em"
 
   const style = {

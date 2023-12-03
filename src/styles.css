@@ -20,14 +20,16 @@ body, #root {
 }
 
 #outer-circle {
-  height: 95vh;
-  width: 95vh;
+  height: 98vh;
+  width: 98vh;
 }
 
 #dimensions {
+  position: relative;
   height: 100vh;
   border: 1px solid white;
   box-sizing: border-box;
+  margin-left: 1em;
 }
 
 .setting {
@@ -45,7 +47,6 @@ body, #root {
   display: inline-block;
   position: relative;
   width: 20rem;
-  /* height: var(--size); */
   border: 1.5px solid #fff;
   border-radius: var(--size);
 
@@ -75,10 +76,28 @@ li::after {
   content: " "
 }
 
+h1 {
+  text-align: center;
+}
+
+h1:disabled, h1[disabled] {
+  color: #644;
+  text-decoration: line-through;
+}
+
 button {
   position: relative;
   width: 80%;
   left:10%;
   height: 4em;
   border-radius: 4em;
+}
+
+#mask {
+  position: absolute;
+  height: 13em;
+  width: 100%;
+  top: 0;
+  background-color: #222d;
+  pointer-events: none;
 }

@@ -7,6 +7,7 @@ import { DragContext } from "../context/DragContext"
 
 import { Slider } from "./Slider"
 import { CircleInfo } from "./CircleInfo"
+import { AreaCovered } from "./AreaCovered"
 import { SaveButton } from "./SaveButton"
 
 
@@ -31,7 +32,9 @@ export const Dimensions = () => {
       <Slider title="Initial Size" />
       <Slider title="Ratio" />
       <Slider title="Final Size" />
+      <div id="mask"></div>
       <ul>{infoList}</ul>
+      <AreaCovered />
       <SaveButton />
     </div>
   )

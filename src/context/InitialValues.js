@@ -194,7 +194,7 @@ export const initialState2 = {
 
 export const initialState = {
   "one": {
-    "cx": 0.007,
+    "cx": 0.00,
     "cy": -29.124,
     "r": 20.875,
     "fill": "#840"
