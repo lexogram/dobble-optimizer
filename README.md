@@ -1,8 +1,7 @@
-# React + Vite
+# Dobble Optimizer #
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Demo](https://lexogram.github.io/dobble-optimizer/)
 
-Currently, two official plugins are available:
+App to help find the optimal packing for 8 circles whose sizes decrease uniformly.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can drag circles around. If they overlap, they turn red. The display on the right shows the position of the centre of each circle and its radius, plus the total area covered by the inner circles.
