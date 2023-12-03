@@ -25,11 +25,33 @@ body, #root {
 }
 
 #dimensions {
-  position: relative;
   height: 100vh;
-  border: 1px solid white;
+  width: 24rem;
+  border: 1px inset #ccc;
   box-sizing: border-box;
   margin-left: 1em;
+  overflow: auto;
+}
+
+label {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  font-size: 1.5rem;
+}
+
+label span {
+  font-size: inherit;
+  margin: 0.5em;
+}
+
+select {
+  font-size: inherit;
+  font-family: inherit;
+  flex-grow: 1;
+  margin-right: 0.5em;
 }
 
 .setting {
@@ -49,7 +71,7 @@ body, #root {
   width: 20rem;
   border: 1.5px solid #fff;
   border-radius: var(--size);
-
+  overflow: hidden;
 }
 
 .thumb {
@@ -59,8 +81,6 @@ body, #root {
   border: 0.5px solid #000;
   border-radius: var(--size);
   background-color: #fff;
-
-  left: 50px;
 }
 
 .slider input {
@@ -69,18 +89,33 @@ body, #root {
   text-align: right;
 }
 
-li {
-  display: inline
-}
-li::after {
-  content: " "
+ul {
+  list-style-type: none;
+  padding: 0.5em 0.5em 0;
 }
 
-h1 {
+li {
+
+  display: inline-block;
+  width: 100%
+}
+
+span {
+  font-size: 0.75em;
+  user-select: none;
+}
+
+p {
+  margin: 0 0 0.75rem 0;
   text-align: center;
 }
 
-h1:disabled, h1[disabled] {
+h2 {
+  text-align: center;
+  margin: 0.5em;
+}
+
+h2:disabled, h2[disabled] {
   color: #644;
   text-decoration: line-through;
 }
@@ -89,15 +124,10 @@ button {
   position: relative;
   width: 80%;
   left:10%;
-  height: 4em;
-  border-radius: 4em;
-}
 
-#mask {
-  position: absolute;
-  height: 13em;
-  width: 100%;
-  top: 0;
-  background-color: #222d;
-  pointer-events: none;
+  font-size: 1.1rem;
+  height: 2.1em;
+
+  border-radius: 4em;
+  margin-bottom: 1em;
 }

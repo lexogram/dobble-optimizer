@@ -6,7 +6,7 @@
 
 export const initialSizes = {
   initial: 0.4175,
-  final: 0.205,
+  final: 0.20875,
   ratio: Math.pow(0.5, 1/7) // HARD-CODED to generate final
 }
 

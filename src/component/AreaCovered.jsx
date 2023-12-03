@@ -19,17 +19,14 @@ export const AreaCovered = () => {
 
   const areaCovered = (coveredArea * 100 / totalArea)
   .toFixed(3) + "%"
-  
-  const disabled = circleData.some( data => data.ix.size )
-  console.log("disabled:", disabled);
-  
 
+  const disabled = circleData.some( data => data.ix.size )
 
   return (
-    <h1
+    <h2
       disabled={disabled}
     >
       Area Covered: {areaCovered}
-    </h1>
+    </h2>
   )
 }

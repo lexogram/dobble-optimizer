@@ -19,7 +19,7 @@ export const SaveButton = () => {
       onClick={saveLayout}
       disabled={disabled}
     >
-      Save Layout
+      Save Layout...
     </button>
   )
 }

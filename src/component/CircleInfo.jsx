@@ -33,11 +33,12 @@ export const CircleInfo = ({ id }) => {
       >
         {id}
       </span>
-      <ul>
-        <li>x: {cx}</li>
-        <li>y: {cy}</li>
+      <p>&lt;circle cx="{cx}" cy="{cy}" r="{r}" /&gt;</p>
+      {/* <ul>
+        <li>cx: {cx}</li>
+        <li>cy: {cy}</li>
         <li>r: {r}</li>
-      </ul>
+      </ul> */}
     </>
   )
 }
