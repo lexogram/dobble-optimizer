@@ -12,7 +12,7 @@ export const Slider = ({ title }) => {
   // initial-size —> initial
 
   const { sizes, updateSize } = useContext(DragContext)
-  const value = sizes[id]
+  const value = sizes[id].toFixed(3)
 
 
   const checkKey = event => {

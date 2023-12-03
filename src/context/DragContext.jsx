@@ -5,31 +5,16 @@
 
 import React, { createContext, useState } from 'react'
 import { startDragging } from './Drag'
+import { initialSizes, initialState } from './InitialValues'
 
 
 export const DragContext = createContext()
 
 
 
-const initialState = {
-  one:   { cx:   0, cy:   0, r: 25, ix: new Set() },
-  two:   { cx:   0, cy: -35, r: 10, ix: new Set() },
-  three: { cx:  25, cy: -25, r: 10, ix: new Set() },
-  four:  { cx:  35, cy:   0, r: 10, ix: new Set() },
-  five:  { cx:  25, cy:  25, r: 10, ix: new Set() },
-  six:   { cx:   0, cy:  35, r: 10, ix: new Set() },
-  seven: { cx: -25, cy:  25, r: 10, ix: new Set() },
-  eight: { cx: -35, cy:   0, r: 10, ix: new Set() }
-}
-
-
 export const DragProvider = ({ children }) => {
   const [ dimensions, setDimensions ] = useState(initialState)
-  const [ sizes, setSizes ] = useState({
-    initial: 0.5,
-    ratio: 0.9,
-    final: 0
-  })
+  const [ sizes, setSizes ] = useState(initialSizes)
 
 
   const startDrag = event => {
@@ -43,13 +28,33 @@ export const DragProvider = ({ children }) => {
   }
 
 
+  const saveLayout = () => {
+    const replacer = (key, value) => {
+      if (key === "ix") {
+        return undefined
+      } else if (typeof value === "number") {
+        value = parseInt(value * 1000) / 1000
+      }
+
+      return value
+    }
+
+    console.log(
+      "dimensions",
+      JSON.stringify(dimensions, replacer, '  ')
+    );
+
+  }
+
+
   return (
     <DragContext.Provider
       value ={{
         dimensions,
         startDrag,
         sizes,
-        updateSize
+        updateSize,
+        saveLayout
       }}
     >
       {children}
