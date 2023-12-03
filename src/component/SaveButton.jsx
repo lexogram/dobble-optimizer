@@ -6,7 +6,7 @@
 import { useContext } from "react"
 import { DragContext } from "../context/DragContext"
 
-export const SaveButton = (props) => {
+export const SaveButton = () => {
   const { saveLayout } = useContext(DragContext)
 
   return (

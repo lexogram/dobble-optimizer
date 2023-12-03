@@ -67,3 +67,18 @@ body, #root {
   width: calc(2.5 * var(--size));
   text-align: right;
 }
+
+li {
+  display: inline
+}
+li::after {
+  content: " "
+}
+
+button {
+  position: relative;
+  width: 80%;
+  left:10%;
+  height: 4em;
+  border-radius: 4em;
+}

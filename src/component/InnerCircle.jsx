@@ -6,9 +6,9 @@ import { useContext } from "react"
 import { DragContext } from "../context/DragContext"
 
 
-export const InnerCircle = ({ id, fill }) => {
+export const InnerCircle = ({ id }) => {
   const { startDrag, dimensions } = useContext(DragContext)
-  const { cx, cy, r, ix } = dimensions[id]
+  let { cx, cy, r, ix, fill } = dimensions[id]
   let stroke
 
   if (ix.size) {
