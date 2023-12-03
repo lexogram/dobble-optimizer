@@ -158,7 +158,7 @@ export const initialState2 = {
     "cx": 0.061,
     "cy": 33.097,
     "r": 16.816,
-    "fill": "#0a0"
+    "fill": "#090"
   },
   "four": {
     "cx": 34.03,
@@ -209,7 +209,7 @@ export const initialState = {
     "cx": 31.811,
     "cy": -8.297,
     "r": 17.124,
-    "fill": "#0a0"
+    "fill": "#090"
   },
   "four": {
     "cx": 3.603,
@@ -227,7 +227,7 @@ export const initialState = {
     "cx": 13.124,
     "cy": 34.889,
     "r": 12.723,
-    "fill": "#00c"
+    "fill": "#00a"
   },
   "seven": {
     "cx": 32.602,
