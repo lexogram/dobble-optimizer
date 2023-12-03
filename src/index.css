@@ -29,3 +29,41 @@ body, #root {
   border: 1px solid white;
   box-sizing: border-box;
 }
+
+.setting {
+  --size: 1rem;
+  margin: 0.25rem;
+}
+
+.setting p {
+  margin-bottom: 0;
+  display: flex;
+  align-items:center
+}
+
+.range {
+  display: inline-block;
+  position: relative;
+  width: 20rem;
+  /* height: var(--size); */
+  border: 1.5px solid #fff;
+  border-radius: var(--size);
+
+}
+
+.thumb {
+  position: relative;
+  width: calc(2 * var(--size));
+  height: var(--size);
+  border: 0.5px solid #000;
+  border-radius: var(--size);
+  background-color: #fff;
+
+  left: 50px;
+}
+
+.slider input {
+  display: inline-block;
+  width: calc(2.5 * var(--size));
+  text-align: right;
+}

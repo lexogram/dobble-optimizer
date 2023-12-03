@@ -2,13 +2,17 @@
  * Dimensions.jsx
  */
 
+import { Slider } from "./Slider"
+
 
 export const Dimensions = (props) => {
 
 
   return (
     <div id="dimensions">
-      <h1>Dimensions goes here</h1>
+      <Slider title="Initial Size" />
+      <Slider title="Ratio" />
+      <Slider title="Final Size" />
     </div>
   )
 }
