@@ -14,9 +14,6 @@ export const Slider = ({ title }) => {
   const { sizes, updateSize } = useContext(DragContext)
   const value = sizes[id]
 
-  console.log("id:", id, value);
-  
-
 
   const checkKey = event => {
     

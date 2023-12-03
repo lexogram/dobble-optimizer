@@ -42,10 +42,6 @@ export function startDragging(event, dimensions, setDimensions) {
   const clickY = event.pageY
   const offsetX = cx - clickX
   const offsetY = cy - clickY
-  console.log(" cx, cy:", cx, cy, );
-  console.log(" ox, oy:", ox, oy, );
-  console.log("clickX, clickY:", clickX, clickY);
-  console.log("offsetX, offsetY:", offsetX, offsetY);
 
   // TODO: Add timeout to stop drag, in case mouseUp was outside
   // browser window
@@ -65,8 +61,6 @@ export function startDragging(event, dimensions, setDimensions) {
   }
 
   function checkForIntersections() {
-    let updateNeeded = false
-
     const { cx: tx, cy: ty, r: tr, ix: tIx} = data
     const entries = Object.entries(dimensions)
     entries.forEach(([ oId, { cx, cy, r, ix }]) => {
@@ -80,8 +74,6 @@ export function startDragging(event, dimensions, setDimensions) {
         const intersectsNow = delta2 < minDelta2
         const didIntersect = ix.has(id)
         if (intersectsNow !== didIntersect) {
-          updateNeeded = true
-
           if (intersectsNow) {
             ix.add(id)
             tIx.add(oId)
@@ -92,9 +84,8 @@ export function startDragging(event, dimensions, setDimensions) {
         }
       }
     })
-
-    return updateNeeded
   }
+
 
   function drag(event) {
     const left = offsetX + event.pageX
@@ -102,17 +93,12 @@ export function startDragging(event, dimensions, setDimensions) {
     const { cx, cy } = getNewCentre((left-ox)/gx, (top-oy)/gx)
 
     data = { ...data, cx, cy }
+    dimensions[id] = data
 
-    const fullUpdateNeeded = checkForIntersections()
-
-    if (fullUpdateNeeded) {
-      dimensions[id] = data
-      setDimensions({ ...dimensions })
-    } else {
-
-      setDimensions({ ...dimensions, [id]: data })
-    }
+    checkForIntersections() // may update any of the dimensions
+    setDimensions({ ...dimensions })
   }
+
 
   function stopDrag() {
     document.documentElement.onmousemove = null
