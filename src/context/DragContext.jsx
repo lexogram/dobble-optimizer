@@ -5,7 +5,7 @@
 
 import React, { createContext, useState } from 'react'
 import { startDragging } from './Drag'
-import { initialSizes, initialState } from './InitialValues'
+import { initialSizes, initialState } from './DragReducer'
 
 
 export const DragContext = createContext()
