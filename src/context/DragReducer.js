@@ -180,7 +180,9 @@ const defaultLayouts = {
 
 export const initialState = (function (){
   // TODO: check which default layout the user set in localStorage
-  const layout = defaultLayouts["First"] //"Best double radius"]
+  const layoutNames = Object.keys(defaultLayouts)
+  const layout = defaultLayouts[layoutNames[0]]
+  layout.layouts = layoutNames
   checkForIntersections(layout.circles)
   return layout
 })()
@@ -203,8 +205,8 @@ export const reducer = (state, action) => {
     case "UPDATE_SIZE":
       return updateSize(state, payload)
 
-    case "SET_COVERAGE":
-      return setCoverage(state, payload)
+    case "SET_LAYOUT":
+      return setLayout(state, payload)
   }
 
   return state
@@ -574,4 +576,11 @@ function setCoverage(state, circles) {
 
   state.coverage = coverage
   state.hasOverlap = circleData.some( data => data.ix.size )
+}
+
+
+function setLayout(state, layoutName) {
+  const layout = defaultLayouts[layoutName]
+  checkForIntersections(layout.circles)
+  return { ...state, ...layout }
 }

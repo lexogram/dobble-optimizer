@@ -13,7 +13,7 @@ export const DragContext = createContext()
 
 export const DragProvider = ({ children }) => {
   const [ state, dispatch ] = useReducer( reducer, initialState )
-  const { circles, coverage, hasOverlap, sizes } = state
+  const { circles, coverage, hasOverlap, sizes, layouts } = state
 
 
   const startDrag = event => {
@@ -58,9 +58,18 @@ export const DragProvider = ({ children }) => {
   }
 
 
+  const selectLayout = name => {
+    const action = {
+      type: "SET_LAYOUT",
+      payload: name
+    }
+    dispatch(action)
+  }
+
+
   const saveLayout = () => {
     const replacer = (key, value) => {
-      if (key === "ix" || key === "dragData") {
+      if (key === "ix" || key === "dragData" || key === "layouts") {
         return undefined
       } else if (typeof value === "number") {
         value = parseInt(value * 1000) / 1000
@@ -86,7 +95,9 @@ export const DragProvider = ({ children }) => {
         updateSize,
         coverage,
         hasOverlap,
-        saveLayout
+        layouts,
+        saveLayout,
+        selectLayout
       }}
     >
       {children}
