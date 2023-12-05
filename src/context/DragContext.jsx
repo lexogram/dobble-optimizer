@@ -3,9 +3,8 @@
  * description
  */
 
-import React, { createContext, useState } from 'react'
-import { startDragging } from './Drag'
-import { initialSizes, initialState } from './DragReducer'
+import React, { createContext, useReducer } from 'react'
+import { reducer, initialState } from './DragReducer'
 
 
 export const DragContext = createContext()
@@ -13,24 +12,55 @@ export const DragContext = createContext()
 
 
 export const DragProvider = ({ children }) => {
-  const [ dimensions, setDimensions ] = useState(initialState)
-  const [ sizes, setSizes ] = useState(initialSizes)
+  const [ state, dispatch ] = useReducer( reducer, initialState )
+  const { circles, coverage, hasOverlap, sizes } = state
 
 
   const startDrag = event => {
-    startDragging(event, dimensions, setDimensions)
+    const action = {
+      type: "START_DRAGGING",
+      payload: event
+    }
+    dispatch(action)
+
+    document.documentElement.onmousemove = drag
+    document.documentElement.onmouseup = stopDrag
   }
 
 
-  const updateSize = (id, value) => {
-    sizes[id] = value
-    setSizes({...sizes})
+  const drag = event => {
+    const action = {
+      type: "DRAG",
+      payload: event
+    }
+
+    dispatch(action)
+  }
+
+
+  const stopDrag = () => {
+    dispatch({ type: "STOP_DRAGGING" })
+
+    document.documentElement.onmousemove = null
+    document.documentElement.onmouseup = null
+  }
+
+
+  const updateSize = (key, value) => {
+    const action = {
+      type: "UPDATE_SIZE",
+      payload: {
+        key,
+        value
+      }
+    }
+    dispatch(action)
   }
 
 
   const saveLayout = () => {
     const replacer = (key, value) => {
-      if (key === "ix") {
+      if (key === "ix" || key === "dragData") {
         return undefined
       } else if (typeof value === "number") {
         value = parseInt(value * 1000) / 1000
@@ -40,8 +70,8 @@ export const DragProvider = ({ children }) => {
     }
 
     console.log(
-      "dimensions",
-      JSON.stringify(dimensions, replacer, '  ')
+      "layout",
+      JSON.stringify(state, replacer, '  ')
     );
 
   }
@@ -50,10 +80,12 @@ export const DragProvider = ({ children }) => {
   return (
     <DragContext.Provider
       value ={{
-        dimensions,
+        circles,
         startDrag,
         sizes,
         updateSize,
+        coverage,
+        hasOverlap,
         saveLayout
       }}
     >

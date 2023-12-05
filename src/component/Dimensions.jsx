@@ -13,8 +13,8 @@ import { SaveButton } from "./SaveButton"
 
 
 export const Dimensions = () => {
-  const { dimensions } = useContext(DragContext)
-  const circleIds = Object.keys(dimensions)
+  const { sizes, circles } = useContext(DragContext)
+  const circleIds = Object.keys(circles)
 
   const infoList = circleIds.map(( id ) => (
     <li
@@ -29,7 +29,8 @@ export const Dimensions = () => {
   const maxSize = 0.45
   const minSize = 0.30 // .302593388 allows a circle of 7 circles
   const minRatio = 0.82
-  const minFinal = minSize * Math.pow(minRatio, 7)
+  const maxMin = sizes.initial
+  const minMin = maxMin * Math.pow(minRatio, 7)
 
   return (
     <div id="dimensions">
@@ -47,8 +48,8 @@ export const Dimensions = () => {
       />
       <Slider
         title="Final Size"
-        max={maxSize}
-        min={minFinal}
+        max={maxMin}
+        min={minMin}
       />
       <AreaCovered />
       <SaveButton />

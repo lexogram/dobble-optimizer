@@ -7,8 +7,8 @@ import { DragContext } from "../context/DragContext"
 
 
 export const InnerCircle = ({ id }) => {
-  const { startDrag, dimensions } = useContext(DragContext)
-  let { cx, cy, r, ix, fill } = dimensions[id]
+  const { startDrag, circles } = useContext(DragContext)
+  let { cx, cy, r, ix, fill } = circles[id]
   let stroke
 
   if (ix.size) {

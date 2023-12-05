@@ -7,17 +7,12 @@ import { useContext } from "react"
 import { DragContext } from "../context/DragContext"
 
 export const SaveButton = () => {
-  const { saveLayout, dimensions } = useContext(DragContext)
-
-  
-  const disabled = Object.values(dimensions).some(
-    data => data.ix.size
-  )
+  const { saveLayout, hasOverlap } = useContext(DragContext)
 
   return (
     <button
       onClick={saveLayout}
-      disabled={disabled}
+      disabled={hasOverlap}
     >
       Save Layout...
     </button>

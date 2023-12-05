@@ -7,8 +7,8 @@ import { DragContext } from '../context/DragContext'
 
 
 export const CircleInfo = ({ id }) => {
-  const { dimensions } = useContext(DragContext)
-  const data = dimensions[id]
+  const { circles } = useContext(DragContext)
+  const data = circles[id]
   let { cx, cy, r, fill } = data
   cx = cx.toFixed(3)
   cy = cy.toFixed(3)
