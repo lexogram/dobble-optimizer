@@ -56,7 +56,7 @@ const defaultLayouts = {
     },
     "coverage": "79.657%"
   },
-  "78.43": {
+  "Orange 78.43": {
     "sizes": {
       "initial": 0.38, "final": 0.248, "ratio": 0.94
     },
@@ -88,7 +88,7 @@ const defaultLayouts = {
     },
     "coverage": "78.426%"
   },
-  "77.36": {
+  "Yellow 77.36": {
     "sizes": {
       "initial": 0.393, "final": 0.231, "ratio": 0.926
     },
@@ -120,7 +120,7 @@ const defaultLayouts = {
     },
     "coverage": "77.365%"
   },
-  "77.17": {
+  "Green 77.17": {
     "sizes": {
       "initial": 0.4, "final": 0.224, "ratio": 0.921
     },
@@ -152,7 +152,7 @@ const defaultLayouts = {
       }
     }
   },
-  "77.12": {
+  "Teal 77.12": {
     "sizes": {
       "initial": 0.4175, "final": 0.20875, "ratio": Math.pow(0.5, 1/7) // HARD-CODED to generate final
     },
@@ -184,7 +184,7 @@ const defaultLayouts = {
       }
     }
   },
-  "76.98": {
+  "Yellow 76.98": {
     "sizes": {
       "initial": 0.37, "final": 0.251, "ratio": 0.946
     },
@@ -216,7 +216,7 @@ const defaultLayouts = {
     },
     "coverage": "76.978%"
   },
-  "76.82": {
+  "Royal 76.82": {
     "sizes": {
       "initial": 0.45, "final": 0.178, "ratio": 0.876
     },
@@ -248,7 +248,65 @@ const defaultLayouts = {
     },
     "coverage": "76.818%"
   },
-  "75.45": {
+  "Green 76.52" : {
+    "sizes": {
+      "initial": 0.45,
+      "final": 0.177,
+      "ratio": 0.875
+    },
+    "circles": {
+      "one": {
+        "cx": 0,
+        "cy": -27.5,
+        "r": 22.5,
+        "fill": "#840"
+      },
+      "two": {
+        "cx": -30.23,
+        "cy": 1.962,
+        "r": 19.706,
+        "fill": "#880"
+      },
+      "three": {
+        "cx": 5.802,
+        "cy": 11.994,
+        "r": 17.259,
+        "fill": "#090"
+      },
+      "four": {
+        "cx": 33.396,
+        "cy": -10.079,
+        "r": 15.116,
+        "fill": "#066"
+      },
+      "five": {
+        "cx": -17.417,
+        "cy": 32.372,
+        "r": 13.239,
+        "fill": "#048"
+      },
+      "six": {
+        "cx": 34.596,
+        "cy": 16.673,
+        "r": 11.595,
+        "fill": "#009"
+      },
+      "seven": {
+        "cx": 4.902,
+        "cy": 39.542,
+        "r": 10.155,
+        "fill": "#408"
+      },
+      "eight": {
+        "cx": 23.218,
+        "cy": 33.919,
+        "r": 8.894,
+        "fill": "#804"
+      }
+    },
+    "coverage": "76.516%"
+  },
+  "Royal 75.45": {
     "sizes": {
       "initial": 0.427, "final": 0.193, "ratio": 0.892
     },
@@ -280,7 +338,7 @@ const defaultLayouts = {
     },
     "coverage": "75.452%"
   },
-  "75.39": {
+  "Blue 75.39": {
     "sizes": {
       "initial": 0.4, "final": 0.217, "ratio": 0.916
     },
@@ -312,7 +370,7 @@ const defaultLayouts = {
     },
     "coverage": "75.388%"
   },
-  "75.18": {
+  "Purple+Pink 75.18": {
     "sizes": {
       "initial": 0.445, "final": 0.176, "ratio": 0.876
     },
@@ -344,7 +402,7 @@ const defaultLayouts = {
     },
     "coverage": "75.183%"
   },
-  "73.73": {
+  "Royal+Blue 73.73": {
     "sizes": {
       "initial": 0.45, "final": 0.167, "ratio": 0.868
     },
@@ -376,7 +434,7 @@ const defaultLayouts = {
     },
     "coverage": "73.725%"
   },
-  "73.32": {
+  "Royal+Pink 73.32": {
     "sizes": {
       "initial": 0.4, "final": 0.209, "ratio": 0.911
     },
@@ -440,7 +498,7 @@ const defaultLayouts = {
     },
     "coverage": "72.963%"
   },
-  "72.74": {
+  "Royal+Purple 72.74": {
     "sizes": {
       "initial": 0.39, "final": 0.215, "ratio": 0.918
     },
@@ -986,7 +1044,7 @@ function saveLayout(state, layoutName) {
 
   // Add at the end of the allLayouts list
   layout = JSON.parse(layout)
-  state.allLayouts = { ...state.allLayouts, ...layout }
+  state.allLayouts = { ...state.allLayouts, [layoutName]: layout }
 
   if (layoutNames.indexOf(layoutName) < 0) {
     // In StrictMode all state changes are triggered twice
