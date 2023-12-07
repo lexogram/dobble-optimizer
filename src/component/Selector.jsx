@@ -8,12 +8,17 @@ import { DragContext } from "../context/DragContext"
 
 
 export const Selector = () => {
-  const { layouts, selectLayout } = useContext(DragContext)
+  const {
+    current,
+    layoutNames,
+    selectLayout
+  } = useContext(DragContext)
 
-  const options = layouts.map( layoutName => (
+  const options = layoutNames.map( layoutName => (
     <option
       key={layoutName}
       value={layoutName}
+      selected={layoutName === current}
     >
       {layoutName}
     </option>

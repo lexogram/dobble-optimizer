@@ -13,7 +13,16 @@ export const DragContext = createContext()
 
 export const DragProvider = ({ children }) => {
   const [ state, dispatch ] = useReducer( reducer, initialState )
-  const { circles, coverage, hasOverlap, sizes, layouts } = state
+  const {
+    current,
+    circles,
+    sizes,
+    coverage,
+    hasOverlap,
+    layoutNames,
+    modified,
+    showDialog
+  } = state
 
 
   const startDrag = event => {
@@ -68,36 +77,49 @@ export const DragProvider = ({ children }) => {
 
 
   const saveLayout = () => {
-    const replacer = (key, value) => {
-      if (key === "ix" || key === "dragData" || key === "layouts") {
-        return undefined
-      } else if (typeof value === "number") {
-        value = parseInt(value * 1000) / 1000
-      }
-
-      return value
+    const action = {
+      type: "TOGGLE_SAVE_DIALOG",
+      payload: true
     }
+    dispatch(action)
+  }
 
-    console.log(
-      "layout",
-      JSON.stringify(state, replacer, '  ')
-    );
 
+  const cancelDialog = () => {
+    const action = {
+      type: "TOGGLE_SAVE_DIALOG",
+      payload: false
+    }
+    dispatch(action)
+  }
+
+
+  const saveAs = layoutName => {
+    const action = {
+      type: "SAVE_LAYOUT",
+      payload: layoutName
+    }
+    dispatch(action) 
   }
 
 
   return (
     <DragContext.Provider
       value ={{
+        current,
         circles,
         startDrag,
         sizes,
         updateSize,
         coverage,
         hasOverlap,
-        layouts,
+        layoutNames,
+        selectLayout,
+        modified,
         saveLayout,
-        selectLayout
+        showDialog,
+        cancelDialog,
+        saveAs
       }}
     >
       {children}

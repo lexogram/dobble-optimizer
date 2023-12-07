@@ -131,3 +131,42 @@ button {
   border-radius: 4em;
   margin-bottom: 1em;
 }
+
+#dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #222e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dialog > div {
+  background-color: #1c1c1c;
+  padding: 2em;
+  border: 0.2em outset #333;
+  border-radius: 2em;
+}
+
+#dialog input {
+  font-size: 1.25em;
+  margin-bottom: 2em;
+}
+
+#dialog .buttons {
+  display: flex;
+  justify-content: stretch;
+}
+
+#dialog button {
+  left: unset
+}
+
+#dialog .save {
+  background-color: #050;
+  border: 2px outset #070;
+  margin-left: 0.5em;
+}

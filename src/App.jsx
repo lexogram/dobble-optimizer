@@ -1,7 +1,7 @@
 import { DragProvider } from './context/DragContext'
 import { OuterCircle } from './component/OuterCircle'
 import { Dimensions } from './component/Dimensions'
-
+import { SaveDialog } from './component/SaveDialog'
 
 function App() {
 
@@ -9,6 +9,7 @@ function App() {
     <DragProvider>
       <OuterCircle />
       <Dimensions />
+      <SaveDialog />
     </DragProvider>
   )
 }

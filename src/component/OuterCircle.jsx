@@ -25,7 +25,7 @@ export const OuterCircle = (props) => {
           <InnerCircle id="seven" />
           <InnerCircle id="eight" />
 
-          <line
+          {/* <line
             x1="0"
             y1="-50"
             x2="0"
@@ -41,7 +41,7 @@ export const OuterCircle = (props) => {
             y2="0"
             stroke="white"
             strokeWidth="0.05"
-          />
+          /> */}
         </g>
       </svg>
     </div>
